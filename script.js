@@ -9,25 +9,43 @@ document.addEventListener('DOMContentLoaded', function() {
     const contactLinks = document.querySelectorAll('.contact-link');
     const menuTexts = document.querySelectorAll('.menu-text');
     const aboutSection = document.querySelector('.about-section');
-
+    const projectsSection = document.querySelector('.projects-section');
+    
     function startLoadingAnimation() {
-        lineProgress.style.width = '100%';
+    lineProgress.style.width = '100%';
+    
+    setTimeout(() => {
+        preloader.classList.add('fade-out');
         
         setTimeout(() => {
-            preloader.classList.add('fade-out');
+            mainContent.classList.add('show');
+        }, 300);
+    }, 1000);
+    
+    // Добавляем отслеживание скролла для показа раздела "Про меня"
+    window.addEventListener('scroll', function() {
+        if (aboutSection && !aboutSection.classList.contains('visible')) {
+            const rect = aboutSection.getBoundingClientRect();
+            const windowHeight = window.innerHeight || document.documentElement.clientHeight;
             
-            setTimeout(() => {
-                mainContent.classList.add('show');
-                
-                // Добавляем класс для анимации раздела "Про меня"
-                setTimeout(() => {
-                    if (aboutSection) {
-                        aboutSection.classList.add('visible');
-                    }
-                }, 1200); // Задержка для появления после заголовка
-            }, 300);
-        }, 1000);
-    }
+            if (rect.top <= windowHeight * 0.8) {
+                aboutSection.classList.add('visible');
+            }
+        }
+    });
+    
+    // Если пользователь уже внизу страницы при загрузке
+    setTimeout(() => {
+        if (aboutSection && !aboutSection.classList.contains('visible')) {
+            const rect = aboutSection.getBoundingClientRect();
+            const windowHeight = window.innerHeight || document.documentElement.clientHeight;
+            
+            if (rect.top <= windowHeight) {
+                aboutSection.classList.add('visible');
+            }
+        }
+    }, 500);
+}
     
     function setupLanguageSwitcher() {
         langButtons.forEach(button => {
@@ -113,23 +131,37 @@ document.addEventListener('DOMContentLoaded', function() {
         setTimeout(() => {
             animateTitleLetters();
         }, 1500);
+        window.addEventListener('scroll', function() {
+    if (projectsSection && !projectsSection.classList.contains('visible')) {
+        const rect = projectsSection.getBoundingClientRect();
+        const windowHeight = window.innerHeight || document.documentElement.clientHeight;
         
-        // Добавляем отслеживание скролла для показа раздела "Про меня"
-        // (альтернативный вариант, если хотите показывать при скролле)
-        // window.addEventListener('scroll', function() {
-        //     if (aboutSection && isElementInViewport(aboutSection)) {
-        //         aboutSection.classList.add('visible');
-        //     }
-        // });
+        if (rect.top <= windowHeight * 0.8) {
+            projectsSection.classList.add('visible');
+        }
+    }
+    });
+
+    // Добавляем плавный скролл для навигации
+document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+    anchor.addEventListener('click', function (e) {
+        e.preventDefault();
+        const targetId = this.getAttribute('href');
+        if (targetId === '#') return;
+        
+        const targetElement = document.querySelector(targetId);
+        if (targetElement) {
+            window.scrollTo({
+                top: targetElement.offsetTop - 80,
+                behavior: 'smooth'
+            });
+        }
+    });
+});
+
     }
     
-    // Вспомогательная функция для проверки видимости элемента
-    // function isElementInViewport(el) {
-    //     const rect = el.getBoundingClientRect();
-    //     return (
-    //         rect.top <= (window.innerHeight || document.documentElement.clientHeight) * 0.8
-    //     );
-    // }
+    
     
     init();
 });

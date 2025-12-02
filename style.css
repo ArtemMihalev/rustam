@@ -4,6 +4,16 @@
     box-sizing: border-box;
 }
 
+html {
+    scroll-behavior: smooth;
+}
+
+@media (prefers-reduced-motion: reduce) {
+    html {
+        scroll-behavior: auto;
+    }
+}
+
 html, body {
     width: 100%;
     height: 100%;
@@ -435,8 +445,8 @@ html, body {
 
 .section-title {
     font-family: 'Orbitron', sans-serif;
-    font-weight: 700;
-    font-size: 20px; /* Увеличено с 14px */
+    font-weight: 900;
+    font-size: 25px; /* Увеличено с 14px */
     letter-spacing: 0.1em;
     text-transform: uppercase;
     color: #000;
@@ -493,4 +503,382 @@ html, body {
     .section-title {
         font-size: 16px; /* Увеличено для мобильных */
     }
+}
+
+/* Раздел Проекты */
+.projects-section {
+    padding: 120px 0; /* Убрали боковые паддинги */
+    background: #f5f5f5;
+    min-height: 100vh;
+    position: relative;
+}
+
+.projects-title {
+    font-family: 'Orbitron', sans-serif;
+    font-weight: 900;
+    font-size: 20px;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: #000;
+    margin-bottom: 80px;
+    text-align: center;
+    opacity: 0;
+    transform: translateY(20px);
+    transition: opacity 0.8s ease, transform 0.8s ease;
+}
+
+.projects-section.visible .projects-title {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+.projects-grid {
+    display: flex;
+    flex-direction: column;
+    gap: 0; /* Убрали промежуток */
+}
+
+.project-row {
+    display: grid;
+    grid-template-columns: 0.8fr 0.5fr 1.2fr 2fr 1fr;
+    align-items: center;
+    gap: 30px;
+    padding: 50px 40px; /* Увеличили паддинги */
+    position: relative;
+    transition: all 0.3s ease;
+    cursor: pointer;
+    opacity: 0;
+    transform: translateY(20px);
+    border-bottom: none;
+    width: 100%; /* Добавлено */
+    max-width: 100%; /* Добавлено */
+    margin: 0 auto; /* Добавлено */
+}
+
+.projects-section.visible .project-row {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+.projects-section.visible .project-row:nth-child(1) {
+    transition-delay: 0.1s;
+}
+.projects-section.visible .project-row:nth-child(2) {
+    transition-delay: 0.2s;
+}
+.projects-section.visible .project-row:nth-child(3) {
+    transition-delay: 0.3s;
+}
+.projects-section.visible .project-row:nth-child(4) {
+    transition-delay: 0.4s;
+}
+
+.project-row:hover {
+    background: rgba(0, 0, 0, 0.02);
+}
+
+/* Отступы между строками через margin */
+.project-row + .project-row {
+    margin-top: 20px;
+}
+.project-type,
+.project-year,
+.project-name {
+    font-family: 'Crimson Text', serif;
+    font-style: italic;
+    font-size: 20px;
+    color: #000;
+    letter-spacing: 0.02em;
+}
+
+
+
+.project-hover-images {
+    display: flex;
+    gap: 10px;
+    opacity: 0;
+    transform: translateX(20px) translateY(-50%); /* Объединили */
+    transition: opacity 0.3s ease, transform 0.3s ease;
+    position: absolute;
+    right: 0;
+    top: 50%;
+    pointer-events: none;
+}
+
+.project-row:hover .project-hover-images {
+    opacity: 1;
+    transform: translateX(0) translateY(-50%); /* Объединили */
+}
+
+.hover-image {
+    width: 180px; /* Увеличили */
+    height: 130px; /* Увеличили */
+    background: #000;
+    position: relative;
+    overflow: hidden;
+    border-radius: 2px;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+    transform: none !important; /* Убираем наклон */
+}
+
+.hover-image::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(45deg, #d0d0d0, #e8e8e8);
+}
+
+.hover-image-1 {
+    transform: translateX(-5px); /* Легкий сдвиг вместо наклона */
+}
+
+.hover-image-2 {
+    transform: translateX(5px); /* Легкий сдвиг вместо наклона */
+}
+
+.hover-image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center;
+    transition: transform 0.3s ease;
+}
+
+.hover-image:hover img {
+    transform: scale(1.05);
+}
+
+/* Медиазапросы для проектов */
+@media (max-width: 1024px) {
+    .project-row {
+        grid-template-columns: 0.8fr 0.5fr 1.5fr 1.5fr;
+    }
+    
+    .project-hover-images {
+        display: none;
+    }
+}
+
+@media (max-width: 768px) {
+    .projects-section {
+        padding: 80px 20px;
+    }
+    
+    .project-row {
+        grid-template-columns: 1fr;
+        gap: 15px;
+        padding: 20px;
+        border: 1px solid rgba(0, 0, 0, 0.1);
+        margin-bottom: 15px;
+        border-radius: 5px;
+    }
+    
+    .project-type,
+    .project-year,
+    .project-name {
+        font-size: 18px;
+    }
+    
+    .project-main-image {
+        height: 150px;
+        order: 1;
+    }
+    
+    .project-type {
+        order: 2;
+    }
+    
+    .project-year {
+        order: 3;
+    }
+    
+    .project-name {
+        order: 4;
+        font-size: 22px;
+        font-weight: 600;
+        margin-top: 10px;
+    }
+}
+
+@media (max-width: 480px) {
+    .project-row {
+        padding: 15px;
+    }
+    
+    .project-type,
+    .project-year,
+    .project-name {
+        font-size: 16px;
+    }
+    
+    .project-name {
+        font-size: 20px;
+    }
+    
+    .project-main-image {
+        height: 120px;
+    }
+}
+
+/* Стили для изображений проектов */
+.project-img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center;
+    display: block;
+}
+
+.project-main-image {
+    width: 100%;
+    height: 250px; /* Увеличили высоту */
+    background: #000;
+    position: relative;
+    overflow: hidden;
+    border-radius: 2px;
+}
+
+.project-main-image::before {
+    display: none; /* Убрали градиент */
+}
+
+.hover-image {
+    width: 140px;
+    height: 100px;
+    background: #000;
+    position: relative;
+    overflow: hidden;
+    border-radius: 2px;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+}
+
+.hover-image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center;
+}
+
+.hover-image::before {
+    display: none; /* Убрали градиент */
+}
+
+/* Увеличиваем отступы для десктопа */
+@media (min-width: 1025px) {
+    .project-row {
+        padding: 50px 60px; /* Увеличили отступы */
+        gap: 40px; /* Увеличили промежутки */
+    }
+    
+    .project-type,
+    .project-year,
+    .project-name {
+        font-size: 22px;
+    }
+    
+    .project-main-image {
+        height: 280px;
+    }
+}
+/* Медиазапросы */
+@media (max-width: 1024px) {
+    .project-row {
+        grid-template-columns: 0.8fr 0.5fr 1.5fr 1.5fr;
+        padding: 30px 40px;
+    }
+    
+    .project-hover-images {
+        display: none;
+    }
+}
+
+@media (max-width: 768px) {
+    .projects-section {
+        padding: 80px 0;
+    }
+    
+    .project-row {
+        grid-template-columns: 1fr;
+        gap: 15px;
+        padding: 25px 20px;
+        border: 1px solid rgba(0, 0, 0, 0.05);
+        margin: 0 20px 15px;
+        border-radius: 5px;
+    }
+    
+    .project-main-image {
+        height: 180px;
+        order: 1;
+    }
+}
+
+@media (max-width: 480px) {
+    .project-row {
+        padding: 20px 15px;
+        margin: 0 15px 10px;
+    }
+    
+    .project-main-image {
+        height: 150px;
+    }
+}
+
+/* Десктоп оптимизация проектов */
+@media (min-width: 1400px) {
+    .project-row {
+        padding: 60px 100px;
+    }
+    
+    .project-type,
+    .project-year,
+    .project-name {
+        font-size: 22px;
+    }
+    
+    .project-main-image {
+        height: 280px;
+    }
+    
+    .hover-image {
+        width: 200px;
+        height: 150px;
+    }
+}
+
+@media (min-width: 1600px) {
+    .project-row {
+        padding: 70px 120px;
+    }
+}
+
+/* Улучшаем анимацию появления строк */
+.project-row {
+    transition: opacity 0.6s ease, transform 0.6s ease;
+}
+
+.projects-section.visible .project-row:nth-child(1) {
+    transition-delay: 0s;
+}
+.projects-section.visible .project-row:nth-child(2) {
+    transition-delay: 0.1s;
+}
+.projects-section.visible .project-row:nth-child(3) {
+    transition-delay: 0.2s;
+}
+.projects-section.visible .project-row:nth-child(4) {
+    transition-delay: 0.3s;
+}
+
+/* Улучшаем ховер эффект */
+.project-row:hover {
+    background: rgba(0, 0, 0, 0.03);
+    transform: translateY(-2px);
+    box-shadow: 0 5px 20px rgba(0, 0, 0, 0.05);
+}
+
+.project-row:hover .project-name {
+    color: #333;
 }
