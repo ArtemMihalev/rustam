@@ -104,11 +104,8 @@ html, body {
 }
 
 .main-content .logo-image {
-    opacity: 1; /* Измените с 0 на 1 */
-}
-
-.preloader .logo-image {
     opacity: 1;
+    transition: none;
 }
 
 .main-content.show .logo-image {
@@ -120,16 +117,10 @@ html, body {
     align-items: center;
     gap: 30px;
     opacity: 0;
-    transform: translateY(-10px);
+    transform: translateY(0);
 }
 
-.header-right {
-    display: flex;
-    align-items: center;
-    gap: 30px;
-    opacity: 1; /* Измените с 0 на 1 */
-    transform: translateY(0); /* Измените с translateY(-10px) */
-}
+
 
 .main-content.show .header-right {
     opacity: 1;
@@ -285,31 +276,26 @@ html, body {
 .hero-title {
     font-family: 'Orbitron', sans-serif;
     font-weight: 700;
-    font-size: 10vw;
+    font-size: 8vw;
     letter-spacing: -0.02em;
     line-height: 0.85;
     color: #000;
+    white-space: nowrap;
 }
 
 .title-line {
-    display: block;
+    display: inline-block;
     opacity: 0;
-    transform: translateY(30px);
-    transition: opacity 0.8s ease, transform 0.8s ease;
+    margin-right: 0.2em;
+    transition: opacity 0.8s ease;
 }
 
 .main-content.show .title-line {
     opacity: 1;
-    transform: translateY(0);
-}
-
-.title-line-1 {
     transition-delay: 0.8s;
 }
 
-.title-line-2 {
-    transition-delay: 1s;
-}
+
 
 @media (max-width: 768px) {
     .preloader-header,
@@ -370,13 +356,12 @@ html, body {
 .hero-subtitle {
     margin-bottom: 20px;
     opacity: 0;
-    transform: translateY(20px);
-    transition: opacity 0.8s ease, transform 0.8s ease;
+    transition: opacity 0.8s ease;
 }
 
 .main-content.show .hero-subtitle {
     opacity: 1;
-    transform: translateY(0);
+    transition-delay: 0.7s;
 }
 
 .subtitle-line {
@@ -386,6 +371,32 @@ html, body {
     font-size: 1.5vw;
     letter-spacing: 0.1em;
     color: #000;
+}
+
+.title-line-2 {
+    margin-right: 0;
+}
+
+@media (max-width: 768px) {
+    .hero-title {
+        font-size: 12vw;
+        white-space: normal;
+    }
+}
+
+@media (max-width: 480px) {
+    .hero-title {
+        font-size: 14vw;
+    }
+}
+
+.logo-image,
+.preloader .logo-image,
+.main-content .logo-image,
+.main-content.show .logo-image {
+    opacity: 1 !important;
+    visibility: visible !important;
+    transition: none !important;
 }
 
 @media (max-width: 768px) {
