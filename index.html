@@ -27,9 +27,9 @@
                     <span class="lang-separator">/</span>
                     <button class="lang-btn" data-lang="en">EN</button>
                 </div>
-                <button class="menu-btn" id="menuBtn">
-                    <span class="menu-text">меню</span>
-                </button>
+            <button class="menu-btn" id="preloaderMenuBtn">
+                <span class="menu-text">меню</span>
+            </button>
             </div>
         </header>
         
@@ -55,9 +55,9 @@
                     <span class="lang-separator">/</span>
                     <button class="lang-btn" data-lang="en">EN</button>
                 </div>
-                <button class="menu-btn" id="menuBtn">
-                    <span class="menu-text">меню</span>
-                </button>
+            <button class="menu-btn" id="mainMenuBtn">
+                <span class="menu-text">меню</span>
+            </button>
             </div>
         </header>
 
@@ -80,7 +80,7 @@
         </div>
     </section>
 
-    <section class="about-section">
+    <section class="about-section" id="about">
         <div class="container">
             <h2 class="section-title">ПРО МЕНЯ</h2>
             <div class="about-text">
@@ -91,7 +91,7 @@
         </div>
     </section>
 
-    <section class="projects-section">
+    <section class="projects-section" id="projects">
         <h2 class="projects-title">ПРОЕКТЫ</h2>
         
         <div class="projects-grid">
@@ -198,6 +198,26 @@
         
     </div>
 </footer>
+
+
+<div class="menu-overlay" id="menuOverlay">
+    <div class="menu-content">
+        <nav class="menu-nav">
+            <a href="#about" class="menu-link" data-number="001">
+                <span class="menu-number">/001</span>
+                <span class="menu-text-item">ПРО МЕНЯ</span>
+            </a>
+            <a href="#projects" class="menu-link" data-number="002">
+                <span class="menu-number">/002</span>
+                <span class="menu-text-item">ПРОЕКТЫ</span>
+            </a>
+            <a href="#contact" class="menu-link" data-number="003">
+                <span class="menu-number">/003</span>
+                <span class="menu-text-item">КОНТАКТЫ</span>
+            </a>
+        </nav>
+    </div>
+</div>
 
     <script src="script.js"></script>
 </body>

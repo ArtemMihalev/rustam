@@ -96,13 +96,79 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     }
     
-    function setupMenu() {
-        if (menuBtn) {
-            menuBtn.addEventListener('click', function() {
-                alert('Меню будет реализовано позже');
+   function setupMenu() {
+    const preloaderMenuBtn = document.getElementById('preloaderMenuBtn');
+    const mainMenuBtn = document.getElementById('mainMenuBtn');
+    const menuOverlay = document.getElementById('menuOverlay');
+    
+    if (menuOverlay) {
+        // Функция для открытия/закрытия меню
+        function toggleMenu() {
+            const isMenuOpen = menuOverlay.classList.contains('active');
+            
+            if (!isMenuOpen) {
+                // Открываем меню
+                menuOverlay.classList.add('active');
+                document.body.classList.add('menu-open');
+            } else {
+                // Закрываем меню
+                menuOverlay.classList.remove('active');
+                document.body.classList.remove('menu-open');
+            }
+        }
+        
+        // Добавляем обработчики на обе кнопки
+        if (preloaderMenuBtn) {
+            preloaderMenuBtn.addEventListener('click', function(e) {
+                e.stopPropagation();
+                toggleMenu();
             });
         }
+        
+        if (mainMenuBtn) {
+            mainMenuBtn.addEventListener('click', function(e) {
+                e.stopPropagation();
+                toggleMenu();
+            });
+        }
+        
+        // Закрытие меню при клике на ссылку
+        const menuLinks = document.querySelectorAll('.menu-link');
+        menuLinks.forEach(link => {
+            link.addEventListener('click', function(e) {
+                e.preventDefault();
+                
+                const targetId = this.getAttribute('href');
+                const targetElement = document.querySelector(targetId);
+                
+                // Закрываем меню
+                menuOverlay.classList.remove('active');
+                document.body.classList.remove('menu-open');
+                
+                // Плавный скролл к цели
+                if (targetElement) {
+                    setTimeout(() => {
+                        const headerHeight = document.querySelector('.header').offsetHeight;
+                        const targetPosition = targetElement.getBoundingClientRect().top + window.pageYOffset - headerHeight;
+                        
+                        window.scrollTo({
+                            top: targetPosition,
+                            behavior: 'smooth'
+                        });
+                    }, 300);
+                }
+            });
+        });
+        
+        // Закрытие меню при клике на затемненную область
+        menuOverlay.addEventListener('click', function(e) {
+            if (e.target === menuOverlay) {
+                menuOverlay.classList.remove('active');
+                document.body.classList.remove('menu-open');
+            }
+        });
     }
+}
     
     function animateTitleLetters() {
         const heroSubtitle = document.getElementById('heroSubtitle');
@@ -137,9 +203,12 @@ document.addEventListener('DOMContentLoaded', function() {
         animateTitleLetters();
     }, 1500);
     
-   
+    // ПЛАВНЫЙ СКРОЛЛ ДЛЯ ВСЕХ ССЫЛОК
+    setupSmoothScroll();
+    
+    // Отслеживание скролла для всех секций
     window.addEventListener('scroll', function() {
-     
+        // Для секции проектов
         if (projectsSection && !projectsSection.classList.contains('visible')) {
             const rect = projectsSection.getBoundingClientRect();
             const windowHeight = window.innerHeight || document.documentElement.clientHeight;
@@ -149,7 +218,7 @@ document.addEventListener('DOMContentLoaded', function() {
             }
         }
         
-    
+        // Для футера
         const contactSection = document.querySelector('.contact-section');
         if (contactSection && !contactSection.classList.contains('visible')) {
             const rect = contactSection.getBoundingClientRect();
@@ -161,17 +230,47 @@ document.addEventListener('DOMContentLoaded', function() {
         }
     });
 
- 
+    // Плавный скролл для навигации
+    setupSmoothScroll();
+}
+
+// НОВАЯ ФУНКЦИЯ ДЛЯ ПЛАВНОГО СКРОЛЛА
+function setupSmoothScroll() {
+    // Для всех якорных ссылок
     document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-        anchor.addEventListener('click', function (e) {
+        anchor.addEventListener('click', function(e) {
             e.preventDefault();
+            
             const targetId = this.getAttribute('href');
-            if (targetId === '#') return;
+            if (targetId === '#' || !targetId) return;
             
             const targetElement = document.querySelector(targetId);
             if (targetElement) {
+                // Вычисляем позицию с учетом шапки
+                const headerHeight = document.querySelector('.header') ? document.querySelector('.header').offsetHeight : 80;
+                const targetPosition = targetElement.getBoundingClientRect().top + window.pageYOffset - headerHeight;
+                
                 window.scrollTo({
-                    top: targetElement.offsetTop - 80,
+                    top: targetPosition,
+                    behavior: 'smooth'
+                });
+            }
+        });
+    });
+    
+    // Также добавим плавный скролл для кнопок меню и других элементов
+    document.querySelectorAll('[data-scroll]').forEach(element => {
+        element.addEventListener('click', function(e) {
+            e.preventDefault();
+            const targetId = this.getAttribute('data-scroll');
+            const targetElement = document.querySelector(targetId);
+            
+            if (targetElement) {
+                const headerHeight = document.querySelector('.header') ? document.querySelector('.header').offsetHeight : 80;
+                const targetPosition = targetElement.getBoundingClientRect().top + window.pageYOffset - headerHeight;
+                
+                window.scrollTo({
+                    top: targetPosition,
                     behavior: 'smooth'
                 });
             }
