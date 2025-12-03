@@ -273,7 +273,7 @@ html, body {
     font-family: 'Orbitron', sans-serif;
     font-weight: 700;
     font-size: 8vw;
-    letter-spacing: -0.03em; /* Уменьшаем межбуквенное расстояние */
+    letter-spacing: -0.03em;
     line-height: 0.85;
     color: #000;
     white-space: nowrap;
@@ -446,7 +446,7 @@ html, body {
 .section-title {
     font-family: 'Orbitron', sans-serif;
     font-weight: 900;
-    font-size: 25px; /* Увеличено с 14px */
+    font-size: 25px; 
     letter-spacing: 0.1em;
     text-transform: uppercase;
     color: #000;
@@ -454,7 +454,7 @@ html, body {
     text-align: center;
     opacity: 0;
     transform: translateY(20px);
-    transition: opacity 0.8s ease 0.7s, transform 0.8s ease 0.7s; /* Уменьшена задержка */
+    transition: opacity 0.8s ease 0.7s, transform 0.8s ease 0.7s; 
 }
 
 .about-text {
@@ -481,18 +481,18 @@ html, body {
 /* Медиа-запросы для текста "Про меня" */
 @media (max-width: 768px) {
     .about-text {
-        font-size: 22px !important; /* Увеличено */
+        font-size: 22px !important; 
         padding: 0 20px;
     }
     
     .section-title {
-        font-size: 18px; /* Увеличено для мобильных */
+        font-size: 18px; 
     }
 }
 
 @media (max-width: 480px) {
     .about-text {
-        font-size: 18px !important; /* Увеличено */
+        font-size: 18px !important; 
         padding: 0 15px;
     }
     
@@ -501,7 +501,7 @@ html, body {
     }
     
     .section-title {
-        font-size: 16px; /* Увеличено для мобильных */
+        font-size: 16px; 
     }
 }
 
@@ -513,7 +513,7 @@ html, body {
     position: relative;
     width: 100%;
     max-width: 100%;
-    overflow: hidden; /* Добавьте это, если будут проблемы с горизонтальным скроллом */
+    overflow: hidden; 
 }
 
 .projects-title {
@@ -538,7 +538,7 @@ html, body {
 .projects-grid {
     display: flex;
     flex-direction: column;
-    gap: 0; /* Убрали промежуток */
+    gap: 0; 
 }
 
 .project-row {
@@ -546,7 +546,7 @@ html, body {
     grid-template-columns: 0.8fr 0.5fr 1.2fr 2fr 1fr;
     align-items: center;
     gap: 30px;
-    padding: 50px 5%; /* Изменить на процентные отступы */
+    padding: 50px 5%; 
     position: relative;
     transition: all 0.3s ease;
     cursor: pointer;
@@ -579,7 +579,7 @@ html, body {
     background: rgba(0, 0, 0, 0.02);
 }
 
-/* Отступы между строками через margin */
+
 .project-row + .project-row {
     margin-top: 20px;
 }
@@ -599,7 +599,7 @@ html, body {
     display: flex;
     gap: 10px;
     opacity: 0;
-    transform: translateX(20px) translateY(-50%); /* Объединили */
+    transform: translateX(20px) translateY(-50%); 
     transition: opacity 0.3s ease, transform 0.3s ease;
     position: absolute;
     right: 0;
@@ -609,18 +609,18 @@ html, body {
 
 .project-row:hover .project-hover-images {
     opacity: 1;
-    transform: translateX(0) translateY(-50%); /* Объединили */
+    transform: translateX(0) translateY(-50%); 
 }
 
 .hover-image {
-    width: 180px; /* Увеличили */
-    height: 130px; /* Увеличили */
+    width: 180px; 
+    height: 130px; 
     background: #000;
     position: relative;
     overflow: hidden;
     border-radius: 2px;
     box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
-    transform: none !important; /* Убираем наклон */
+    transform: none !important; 
 }
 
 .hover-image::before {
@@ -634,11 +634,11 @@ html, body {
 }
 
 .hover-image-1 {
-    transform: translateX(-5px); /* Легкий сдвиг вместо наклона */
+    transform: translateX(-5px); 
 }
 
 .hover-image-2 {
-    transform: translateX(5px); /* Легкий сдвиг вместо наклона */
+    transform: translateX(5px); 
 }
 
 .hover-image img {
@@ -725,7 +725,7 @@ html, body {
     }
 }
 
-/* Стили для изображений проектов */
+
 .project-img {
     width: 100%;
     height: 100%;
@@ -736,7 +736,7 @@ html, body {
 
 .project-main-image {
     width: 100%;
-    height: 250px; /* Увеличили высоту */
+    height: 250px;
     background: #000;
     position: relative;
     overflow: hidden;
@@ -744,7 +744,7 @@ html, body {
 }
 
 .project-main-image::before {
-    display: none; /* Убрали градиент */
+    display: none; 
 }
 
 .hover-image {
@@ -765,28 +765,28 @@ html, body {
 }
 
 .hover-image::before {
-    display: none; /* Убрали градиент */
+    display: none; 
 }
 
 @media (min-width: 1025px) {
     .project-row {
-        padding: 50px 8%; /* Процентные отступы вместо фиксированных */
+        padding: 50px 8%; 
         gap: 40px;
     }
 }
 @media (min-width: 1400px) {
     .project-row {
-        padding: 60px 10%; /* Процентные отступы */
+        padding: 60px 10%; 
     }
 }
 
 @media (min-width: 1600px) {
     .project-row {
-        padding: 70px 12%; /* Процентные отступы */
+        padding: 70px 12%; 
     }
 }
 
-/* Для мобильных устройств оставить боковые отступы */
+
 @media (max-width: 768px) {
     .projects-section {
         padding: 80px 0;
@@ -795,11 +795,11 @@ html, body {
     .project-row {
         grid-template-columns: 1fr;
         gap: 15px;
-        padding: 25px 5%; /* Процентные отступы для мобильных */
-        margin: 0 0 15px; /* Убрали фиксированные отступы */
+        padding: 25px 5%; 
+        margin: 0 0 15px; 
         border: 1px solid rgba(0, 0, 0, 0.05);
         border-radius: 5px;
-        width: 90%; /* Оставить небольшие отступы по бокам */
+        width: 90%; 
         margin-left: auto;
         margin-right: auto;
     }
@@ -813,7 +813,7 @@ html, body {
     }
 }
 
-/* Улучшаем анимацию появления строк */
+
 .project-row {
     transition: opacity 0.6s ease, transform 0.6s ease;
 }
@@ -831,7 +831,7 @@ html, body {
     transition-delay: 0.3s;
 }
 
-/* Улучшаем ховер эффект */
+
 .project-row:hover {
     background: rgba(0, 0, 0, 0.03);
     transform: translateY(-2px);
@@ -866,7 +866,7 @@ html, body {
 /* Футер с контактами - упрощенная версия */
 .contact-section {
     width: 100%;
-    min-height: 70vh; /* Уменьшаем высоту */
+    min-height: 70vh; 
     background: #000;
     display: flex;
     align-items: center;
@@ -955,9 +955,7 @@ html, body {
     opacity: 0.7;
 }
 
-/* УДАЛЯЕМ ВСЕ СТИЛИ ДЛЯ .footer-image */
 
-/* Адаптивность для футера */
 @media (max-width: 768px) {
     .contact-section {
         min-height: 60vh;
@@ -1005,7 +1003,7 @@ html, body {
     }
 }
 
-/* Для очень больших экранов */
+
 @media (min-width: 1600px) {
     .ideas-text {
         font-size: 40px;

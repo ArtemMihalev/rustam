@@ -22,7 +22,7 @@ document.addEventListener('DOMContentLoaded', function() {
         }, 300);
     }, 1000);
     
-    // Добавляем отслеживание скролла для показа раздела "Про меня"
+   
     window.addEventListener('scroll', function() {
         if (aboutSection && !aboutSection.classList.contains('visible')) {
             const rect = aboutSection.getBoundingClientRect();
@@ -34,7 +34,7 @@ document.addEventListener('DOMContentLoaded', function() {
         }
     });
     
-    // Если пользователь уже внизу страницы при загрузке
+  
     setTimeout(() => {
         if (aboutSection && !aboutSection.classList.contains('visible')) {
             const rect = aboutSection.getBoundingClientRect();
@@ -65,7 +65,7 @@ document.addEventListener('DOMContentLoaded', function() {
                     if (subtitle) subtitle.textContent = 'DESIGNER';
                     const ideasText = document.querySelector('.ideas-text');
                     if (ideasText) ideasText.textContent = 'IDEAS DESERVE';
-                    // Перевод раздела "Про меня"
+                  
                     const sectionTitle = document.querySelector('.section-title');
                     if (sectionTitle) sectionTitle.textContent = 'ABOUT ME';
                     
@@ -83,7 +83,7 @@ document.addEventListener('DOMContentLoaded', function() {
                     if (subtitle) subtitle.textContent = 'ДИЗАЙНЕР';
                     const ideasText = document.querySelector('.ideas-text');
                     if (ideasText) ideasText.textContent = 'ИДЕИ ЗАСЛУЖИВАЮТ';
-                    // Перевод раздела "Про меня" обратно на русский
+                
                     const sectionTitle = document.querySelector('.section-title');
                     if (sectionTitle) sectionTitle.textContent = 'ПРО МЕНЯ';
                     
@@ -122,7 +122,7 @@ document.addEventListener('DOMContentLoaded', function() {
     }
     
     function init() {
-    // Предзагрузка изображений
+  
     const cloudsImg = new Image();
     cloudsImg.src = 'clouds.jpg';
     const seaImg = new Image();
@@ -137,9 +137,9 @@ document.addEventListener('DOMContentLoaded', function() {
         animateTitleLetters();
     }, 1500);
     
-    // Отслеживание скролла для всех секций
+   
     window.addEventListener('scroll', function() {
-        // Для секции проектов
+     
         if (projectsSection && !projectsSection.classList.contains('visible')) {
             const rect = projectsSection.getBoundingClientRect();
             const windowHeight = window.innerHeight || document.documentElement.clientHeight;
@@ -149,7 +149,7 @@ document.addEventListener('DOMContentLoaded', function() {
             }
         }
         
-        // Для футера
+    
         const contactSection = document.querySelector('.contact-section');
         if (contactSection && !contactSection.classList.contains('visible')) {
             const rect = contactSection.getBoundingClientRect();
@@ -161,7 +161,7 @@ document.addEventListener('DOMContentLoaded', function() {
         }
     });
 
-    // Плавный скролл для навигации
+ 
     document.querySelectorAll('a[href^="#"]').forEach(anchor => {
         anchor.addEventListener('click', function (e) {
             e.preventDefault();
