@@ -63,7 +63,8 @@ document.addEventListener('DOMContentLoaded', function() {
                     menuTexts.forEach(el => el.textContent = 'menu');
                     const subtitle = document.querySelector('.hero-subtitle .subtitle-line');
                     if (subtitle) subtitle.textContent = 'DESIGNER';
-                    
+                    const ideasText = document.querySelector('.ideas-text');
+                    if (ideasText) ideasText.textContent = 'IDEAS DESERVE';
                     // Перевод раздела "Про меня"
                     const sectionTitle = document.querySelector('.section-title');
                     if (sectionTitle) sectionTitle.textContent = 'ABOUT ME';
@@ -80,7 +81,8 @@ document.addEventListener('DOMContentLoaded', function() {
                     menuTexts.forEach(el => el.textContent = 'меню');
                     const subtitle = document.querySelector('.hero-subtitle .subtitle-line');
                     if (subtitle) subtitle.textContent = 'ДИЗАЙНЕР';
-                    
+                    const ideasText = document.querySelector('.ideas-text');
+                    if (ideasText) ideasText.textContent = 'ИДЕИ ЗАСЛУЖИВАЮТ';
                     // Перевод раздела "Про меня" обратно на русский
                     const sectionTitle = document.querySelector('.section-title');
                     if (sectionTitle) sectionTitle.textContent = 'ПРО МЕНЯ';
@@ -120,46 +122,62 @@ document.addEventListener('DOMContentLoaded', function() {
     }
     
     function init() {
-        // Предзагрузка изображений
-        const cloudsImg = new Image();
-        cloudsImg.src = 'clouds.jpg';
-        
-        startLoadingAnimation();
-        setupLanguageSwitcher();
-        setupMenu();
-        
-        setTimeout(() => {
-            animateTitleLetters();
-        }, 1500);
-        window.addEventListener('scroll', function() {
-    if (projectsSection && !projectsSection.classList.contains('visible')) {
-        const rect = projectsSection.getBoundingClientRect();
-        const windowHeight = window.innerHeight || document.documentElement.clientHeight;
-        
-        if (rect.top <= windowHeight * 0.8) {
-            projectsSection.classList.add('visible');
+    // Предзагрузка изображений
+    const cloudsImg = new Image();
+    cloudsImg.src = 'clouds.jpg';
+    const seaImg = new Image();
+    seaImg.src = 'sea.jpg';
+   
+    
+    startLoadingAnimation();
+    setupLanguageSwitcher();
+    setupMenu();
+    
+    setTimeout(() => {
+        animateTitleLetters();
+    }, 1500);
+    
+    // Отслеживание скролла для всех секций
+    window.addEventListener('scroll', function() {
+        // Для секции проектов
+        if (projectsSection && !projectsSection.classList.contains('visible')) {
+            const rect = projectsSection.getBoundingClientRect();
+            const windowHeight = window.innerHeight || document.documentElement.clientHeight;
+            
+            if (rect.top <= windowHeight * 0.8) {
+                projectsSection.classList.add('visible');
+            }
         }
-    }
+        
+        // Для футера
+        const contactSection = document.querySelector('.contact-section');
+        if (contactSection && !contactSection.classList.contains('visible')) {
+            const rect = contactSection.getBoundingClientRect();
+            const windowHeight = window.innerHeight || document.documentElement.clientHeight;
+            
+            if (rect.top <= windowHeight * 0.8) {
+                contactSection.classList.add('visible');
+            }
+        }
     });
 
-    // Добавляем плавный скролл для навигации
-document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-    anchor.addEventListener('click', function (e) {
-        e.preventDefault();
-        const targetId = this.getAttribute('href');
-        if (targetId === '#') return;
-        
-        const targetElement = document.querySelector(targetId);
-        if (targetElement) {
-            window.scrollTo({
-                top: targetElement.offsetTop - 80,
-                behavior: 'smooth'
-            });
-        }
+    // Плавный скролл для навигации
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+        anchor.addEventListener('click', function (e) {
+            e.preventDefault();
+            const targetId = this.getAttribute('href');
+            if (targetId === '#') return;
+            
+            const targetElement = document.querySelector(targetId);
+            if (targetElement) {
+                window.scrollTo({
+                    top: targetElement.offsetTop - 80,
+                    behavior: 'smooth'
+                });
+            }
+        });
     });
-});
-
-    }
+}
     
     
     
